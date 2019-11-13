@@ -1,0 +1,13 @@
+
+The script check_iptables.sh was written to be able to run on both RHEL6 and RHEL7 servers. 
+
+The script does:
+a. Check if the file /etc/sysconfig/iptables exists. If file does NOT exist, exit
+with error message 
+
+b. If file /etc/sysconfig/iptables exists, it exits if the server is a RHEL 7
+server otherwise if it is a RHEL 6 server it will save the current running iptables
+configuration ONLY IF ALL of the following conditions are met:
+	i) The file /etc/sysconfig/iptables was last modified more than an hour ago
+	ii) The time the script is running is either during the whole morning hour of 7 or the
+	    whole evening hour of 5
