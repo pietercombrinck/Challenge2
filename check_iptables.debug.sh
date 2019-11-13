@@ -11,12 +11,25 @@ if [ ! -f "$file" ]
     if [[ $ver =~ [6] ]] 
       then
 	echo "Redhat 6"
+	echo "Saving current running iptables only if "
 	filein=`find /etc/sysconfig/iptables -cmin +60`
+
+echo "filein ====="$filein"=="
+hour=$(date +%H)
+echo "hour now is:"$hour
+if [ $(date +%H) -eq 05 ]
+then 
+echo "time 05"
+fi
+if [ $(date +%H) -eq 17 ]
+then
+echo "time 07"
+fi
 
 	if [[ ! -z "$filein" ]] && ([[ $(date +%H) -eq 05 ]] || [[ $(date +%H) -eq 17 ]])
 	  then
 	    echo "must save iptables"
-	    service iptables save
+#	    service iptables save
 	  else
 	    echo "don't save iptables"
 	fi
